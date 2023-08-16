@@ -1,0 +1,60 @@
+.font_sm {
+  font-size: 14px;
+}
+
+.App {
+  text-align: center;
+}
+
+.App__header {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+  background-color: #fff;
+}
+.App__logo {
+  max-height: 40px;
+}
+
+.App__body {
+  display: flex;
+  justify-content: center;
+  background-color: #f8f8f8;
+  height: 92vh;
+  padding: 50px;
+}
+
+.App__card {
+  height: 5rem;
+  width: 5rem;
+  padding: 2rem;
+  background-color: gray;
+  margin: 1rem;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+.App__tab {
+  font-size: 18px;
+  color: #273b7e;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  border: none;
+  padding: 10px 25px;
+  border-top-right-radius: 10px;
+  background-color: #000;
+}
+
+.App__tab:active {
+  color: #273b7e;
+}
+
+.tab__body {
+  color: #273b7e;
+  background-color: #fff;
+  padding: 15px;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: none;
+}
