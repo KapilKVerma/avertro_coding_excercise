@@ -1,22 +1,29 @@
 import React from "react";
 // === Components ===
-import AppLogo from "./images/app-logo.png";
-import SecurityStrategy from "./components/SecurityStrategy";
+import Header from "./components/header/Header";
+import SecurityStrategy from "./components/SecurityStrategy/SecurityStrategy";
 import Container from "react-bootstrap/Container";
+import { connectLocalStorage } from "./utilities/localStorageConnetion";
 // === Styles ===
 import "./App.css";
 
 function App() {
+  const connectLS = connectLocalStorage();
+  console.log(connectLS);
+
   return (
     <div className="App">
-      <div className="App__header">
-        <img src={AppLogo} alt="app-logo" className="App__logo" />
-      </div>
-      <body className="App__body">
-        <Container>
+      {/* Main Header */}
+      <header className="App__header">
+        <Header />
+      </header>
+
+      {/* Main Body */}
+      <section className="App__body">
+        <Container className="pt-5 text-left">
           <SecurityStrategy />
         </Container>
-      </body>
+      </section>
     </div>
   );
 }

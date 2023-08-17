@@ -1,60 +1,171 @@
+:root {
+  --white: #ffffff;
+  --gray: #d7d7d7;
+  --gray-light: #f8f8f8;
+  --primary-color: #273b7e;
+  --border-color: #cecece;
+  --danger-color: #e03345;
+  --font-sm: 14px;
+  --font-md: 18px;
+  --font-lg: 24px;
+  --font-family: Arial, Helvetica, sans-serif;
+  --border-radius: 10px;
+  --icon-size: 20px;
+  --icon-md: 20px;
+  --icon-lg: 25px;
+}
+
 .font_sm {
-  font-size: 14px;
+  font-size: var(--font-sm);
+  font-weight: 500;
+}
+
+.font_md {
+  font-size: var(--font-md);
+  font-weight: 500;
+}
+
+.font_lg {
+  font-size: var(--font-lg);
+  font-weight: 500;
 }
 
 .App {
   text-align: center;
+  font-family: var(--font-family);
+}
+.App__container {
+  text-align: left;
+}
+
+.App__icon {
+  font-size: var(--icon-size);
+  cursor: pointer;
+}
+
+.App__icon_date {
+  font-size: var(--icon-lg);
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.App__icon_remove {
+  position: absolute;
+  right: -25px;
+  top: 10px;
+  color: var(--danger-color);
+}
+
+.App__btn {
+  font-size: var(--font-sm);
+  padding: 8px 20px;
+}
+
+.btn_primary {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .App__header {
   display: flex;
   justify-content: center;
   padding: 15px;
-  background-color: #fff;
-}
-.App__logo {
-  max-height: 40px;
+  background-color: var(--white);
 }
 
 .App__body {
-  display: flex;
-  justify-content: center;
-  background-color: #f8f8f8;
-  height: 92vh;
-  padding: 50px;
+  color: var(--primary-color);
 }
 
-.App__card {
-  height: 5rem;
-  width: 5rem;
-  padding: 2rem;
-  background-color: gray;
-  margin: 1rem;
-  border-radius: 5px;
-  border: 1px solid #000;
-}
-
-.App__tab {
-  font-size: 18px;
-  color: #273b7e;
-  font-weight: 600;
-  font-family: Arial, Helvetica, sans-serif;
+.App__tabs {
   border: none;
-  padding: 10px 25px;
-  border-top-right-radius: 10px;
-  background-color: #000;
 }
 
-.App__tab:active {
-  color: #273b7e;
+.tab {
+  font-size: var(--font-md);
+  color: var(--primary-color);
+  font-weight: 600;
+  font-family: var(--font-family);
+  padding: 10px 25px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  border: none;
+  width: fit-content;
 }
 
 .tab__body {
-  color: #273b7e;
-  background-color: #fff;
-  padding: 15px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-  border: none;
+  width: 100%;
+  color: var(--primary-color);
+  background-color: var(--white);
+  padding: 20px;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.objective__container {
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.form__label_primary {
+  font-weight: 600;
+  font-family: var(--font-family);
+  font-size: var(--font-md);
+  margin-bottom: 5px;
+}
+
+.form__lable_secondary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 600;
+  font-family: var(--font-family);
+  font-size: var(--font-md);
+  margin-bottom: 5px;
+}
+
+.form__input {
+  font-size: var(--font-sm);
+  padding: 11.25px 10px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form__input:focus {
+  outline: rgb(199, 226, 255);
+  outline-width: 4px;
+  outline-style: solid;
+  border: 1px solid var(--primary-color);
+}
+
+.form__input_date {
+  border: 1px solid var(--gray);
+  width: 100%;
+  padding: 10px 40px;
+  border-radius: 5px;
+}
+
+.form__input_date:focus {
+  outline: rgb(199, 226, 255);
+  outline-width: 4px;
+  outline-style: solid;
+  border: 1px solid var(--primary-color);
+}
+
+@media only screen and (max-width: 600px) {
+  .App__icon_remove {
+    position: static;
+    margin: 10px 5px;
+  }
+
+  .tab {
+    width: 50%;
+  }
+
+  .form__lable_secondary {
+    flex-direction: column;
+  }
 }
