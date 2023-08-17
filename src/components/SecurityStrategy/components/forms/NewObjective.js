@@ -143,14 +143,14 @@ const NewObjective = (props) => {
 
             {objective.measures.map((measure, index) => {
               return (
-                <div className="d-flex flex-row justify-content-start position-relative mb-2" key={index}>
+                <span key={index}>
                   <Measure
                     index={index}
                     item={measure}
                     handleUpdateMeasures={handleUpdateMeasures}
                     handleMeasuresCount={handleMeasuresCount}
                   />
-                </div>
+                </span>
               );
             })}
           </section>

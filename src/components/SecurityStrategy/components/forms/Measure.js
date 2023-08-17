@@ -15,7 +15,7 @@ const Measure = (props) => {
   };
 
   return (
-    <>
+    <div className="d-flex flex-row justify-content-start position-relative mb-2">
       <input type="text" name="measure" value={keyMeasure} className="form__input" onChange={handleChange} />
       {index > 0 ? (
         <BiSolidMinusCircle
@@ -25,7 +25,7 @@ const Measure = (props) => {
           }}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 

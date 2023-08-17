@@ -3,14 +3,11 @@ import React from "react";
 import Header from "./components/header/Header";
 import SecurityStrategy from "./components/SecurityStrategy/SecurityStrategy";
 import Container from "react-bootstrap/Container";
-import { connectLocalStorage } from "./utilities/localStorageConnetion";
+
 // === Styles ===
 import "./App.css";
 
 function App() {
-  const connectLS = connectLocalStorage();
-  console.log(connectLS);
-
   return (
     <div className="App">
       {/* Main Header */}

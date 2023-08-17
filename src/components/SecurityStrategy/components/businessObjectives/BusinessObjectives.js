@@ -14,7 +14,7 @@ const BusinessObjectives = () => {
     const fetchData = async () => {
       setDataLoading(true);
       const getAppData = await getDataFromLocalStorage();
-      setData(getAppData);
+      if (getAppData) setData(getAppData);
       setDataLoading(false);
     };
     fetchData();

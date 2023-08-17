@@ -7,6 +7,7 @@ import Alert from "react-bootstrap/Alert";
 
 const ObjectivesList = (props) => {
   const { objectives, setShowForm } = props;
+
   return (
     <>
       {/* Objective Header */}
@@ -40,13 +41,14 @@ const ObjectivesList = (props) => {
 
       {/* Objectives List */}
       <section>
-        {objectives.map((objective, index) => {
-          return (
-            <span key={index}>
-              <ObjectiveDetails objective={objective} />
-            </span>
-          );
-        })}
+        {objectives &&
+          objectives.map((objective, index) => {
+            return (
+              <span key={index}>
+                <ObjectiveDetails objective={objective} />
+              </span>
+            );
+          })}
       </section>
     </>
   );
