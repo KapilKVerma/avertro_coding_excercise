@@ -9,6 +9,8 @@ const BusinessObjectives = () => {
   const [showForm, setShowForm] = useState(false);
   const [dataLoading, setDataLoading] = useState(false);
 
+  console.log("main");
+
   useEffect(() => {
     // Fetching objective from localstorage
     const fetchData = async () => {
