@@ -10,7 +10,7 @@ const ObjectiveDetails = (props) => {
     <div className="p-4 mb-3 objective__container">
       {/* Objective title */}
       <section>
-        <span className="font_lg font-weight-bold">{objective.title}</span>
+        <span className="font_lg font-weight-bold text-capitalize">{objective.title}</span>
         <p className="text-dark">
           <span className="font_md mr-5">
             Start Date:&nbsp;{objective.startDate && dayjs(objective.startDate).format("DD/MM/YYYY")}
@@ -27,7 +27,7 @@ const ObjectiveDetails = (props) => {
         <div>
           {objective.measures.map((measure, index) => {
             return (
-              <span key={index} className="font_md mr-4" style={{ display: "inline-block" }}>
+              <span key={index} className="font_md mr-4 text-capitalize" style={{ display: "inline-block" }}>
                 <GoDotFill />
                 &nbsp;&nbsp;{measure.title}
               </span>
