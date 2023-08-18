@@ -37,6 +37,7 @@ Solution:
           objective tile consists the option to delete the objective.
         - Created the 'New Objectives Form' consists with title, start date, end date and key
           measures fields.
+        - Added data validation using formik and yup libraries to 'New Objectives Form' component.
         - 'New Objectives Form' fuctionalities:
                 - Allows user to add up to 3 objectives at once dynamically.
                 - Each objective can have upto 3 key measures dynamically.
