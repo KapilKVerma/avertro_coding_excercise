@@ -10,7 +10,7 @@ Requirements:
 - Create strategic business objectives form with objective title, start date, end date and key measures.
 - A user can only add up to 3 objectives with the form.
 - Each objective in the form can have maximum 3 key measures.
-- Valid the field for input data.
+- Validate the field for input data.
 - End date should be after the start date of an objective.
 - Host the application and upload the code to a git repository
 
