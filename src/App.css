@@ -155,6 +155,11 @@
   border: 1px solid var(--primary-color);
 }
 
+/* Hide the calendar icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 @media only screen and (max-width: 600px) {
   .App__icon_remove {
     position: static;

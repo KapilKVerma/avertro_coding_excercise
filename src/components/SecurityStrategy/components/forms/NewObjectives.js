@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // === Components ===
 import NewObjective from "./NewObjective";
 import AppAlerts from "../../../../UICompnents/AppAlerts";
+import { v4 as uuidv4 } from "uuid";
 // === Components - bootstrap ===
 import Button from "react-bootstrap/Button";
 // === Components - icons ===
@@ -9,21 +10,36 @@ import { MdAddCircle } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
 
 const NewObjectives = (props) => {
-  const { setShowForm, data } = props;
+  const { setShowForm } = props;
+
+  const initialObjectiveValues = {
+    title: "",
+    startDate: "",
+    endDate: "",
+  };
 
   // Component states
   const [resMessage, setResMessage] = useState("");
-  const [objecCount, setObjecCount] = useState([1]);
+  const [objectivesList, setObjectiveList] = useState([
+    { uuid: uuidv4(), ...initialObjectiveValues },
+  ]);
 
-  // Handle objecCount increament
+  // Handle objective increament
   const increaseCount = () => {
-    if (objecCount.length < 3) setObjecCount([...objecCount, 1]);
+    if (objectivesList.length < 3)
+      setObjectiveList([
+        ...objectivesList,
+        { uuid: uuidv4(), ...initialObjectiveValues },
+      ]);
   };
 
-  // Handle objecCount decrement
-  const decreaseCount = () => {
-    let count = [...objecCount];
-    setObjecCount(count.slice(0, objecCount.length - 1));
+  // Handle objective decrement
+  const decreaseCount = (item) => {
+    let count = [...objectivesList];
+    if (count.length > 0) {
+      count = count.filter((objective) => objective.uuid !== item.uuid);
+    }
+    setObjectiveList(count);
   };
 
   return (
@@ -39,12 +55,12 @@ const NewObjectives = (props) => {
 
       {/* New objective form */}
       <section>
-        {objecCount.map((_, index) => {
+        {objectivesList.map((objective, index) => {
           return (
-            <span key={index}>
+            <span key={objective.uuid}>
               <NewObjective
                 index={index}
-                data={data}
+                item={objective}
                 decreaseCount={decreaseCount}
                 setResMessage={setResMessage}
               />
@@ -64,7 +80,7 @@ const NewObjectives = (props) => {
             <MdCancel className="App__icon mr-2" />
             Cancel
           </Button>
-          {objecCount.length < 3 ? (
+          {objectivesList.length < 3 ? (
             <Button
               className="App__btn btn_primary ml-4"
               onClick={increaseCount}

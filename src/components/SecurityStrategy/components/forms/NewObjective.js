@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 // === Components ===
 import { createObjectives } from "../../../../utilities/localStorageConnetion";
-import Measure from "./Measure";
+import MeasuresList from "./MeasuresList";
 import { useFormik } from "formik";
 import { objectiveSchema } from "../../../../schemas/ObjectiveSchema";
+import { v4 as uuidv4 } from "uuid";
+import CustomInputField from "../../../../UICompnents/CustomInputField";
+import CustomDateField from "../../../../UICompnents/CustomDateField";
 // === Components - bootstrap ===
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
-// === Components - icons ===
-import { MdAddCircle } from "react-icons/md";
-import { MdDateRange } from "react-icons/md";
 
 const NewObjective = (props) => {
-  const { index, decreaseCount, setResMessage } = props;
+  const { item, index, decreaseCount, setResMessage } = props;
 
   // Component states
   const [objectiveMeasures, setObjectiveMeasures] = useState([
-    { id: new Date().toString(), title: "" },
+    { uuid: uuidv4(), title: "" },
   ]);
   const [objectiveSubmited, setObjectiveSumbited] = useState(false);
   const [measuresError, setMeasuresError] = useState("");
-
-  // Handle objective delete
-  const handleDelete = () => {
-    setObjectiveMeasures([{ id: new Date().toString(), title: "" }]);
-    decreaseCount();
-  };
 
   // Handle objective submit
   const submitObjective = (values, actions) => {
@@ -42,7 +36,6 @@ const NewObjective = (props) => {
       return;
     }
 
-    // Create new objective
     const newObjectiveData = { ...values, measures: objectiveMeasures };
     const response = createObjectives(newObjectiveData);
     setResMessage(response);
@@ -53,18 +46,13 @@ const NewObjective = (props) => {
   // Formik validation hook
   const { values, errors, touched, handleChange, handleSubmit, handleBlur } =
     useFormik({
-      initialValues: {
-        id: new Date().toTimeString(),
-        title: "",
-        startDate: "",
-        endDate: "",
-      },
+      initialValues: item,
       validationSchema: objectiveSchema,
       onSubmit: submitObjective,
     });
 
   // Handle objective measures update
-  const handleUpdateMeasures = (item, value) => {
+  const updateMeasureValue = (item, value) => {
     let measures = [...objectiveMeasures];
     measures.forEach((measure) => {
       if (measure.id === item.id) measure.title = value;
@@ -76,15 +64,17 @@ const NewObjective = (props) => {
   // Hanlde objective measures increase
   const handleMeasuresInc = () => {
     let measuresList = [...objectiveMeasures];
-    measuresList.push({ id: new Date().toTimeString(), title: "" });
-    setObjectiveMeasures(measuresList);
+    if (measuresList.length < 3) {
+      measuresList.push({ uuid: uuidv4(), title: "" });
+      setObjectiveMeasures(measuresList);
+    }
   };
 
   // Hanlde objective measures decrease
   const handleMeasuresDec = (item) => {
     let measuresList = [...objectiveMeasures];
-    measuresList = measuresList.filter((measure) => measure.id !== item.id);
-    setObjectiveMeasures(measuresList);
+    measuresList = measuresList.filter((measure) => measure.uuid !== item.uuid);
+    setObjectiveMeasures([...measuresList]);
   };
 
   return (
@@ -93,100 +83,54 @@ const NewObjective = (props) => {
         <form onSubmit={handleSubmit}>
           {/* Form row one */}
           <Row className="mb-3">
-            <Col sm={12} md={12} lg={6}>
-              <section className="mb-3">
-                <div className="form__label_primary">Objective {index + 1}</div>
-                <input
-                  id="title"
-                  type="text"
-                  name="title"
-                  onBlur={handleBlur}
-                  value={values.title}
-                  className="form__input"
-                  onChange={handleChange}
-                />
-                {errors.title && touched.title ? (
-                  <p className="text-danger font_sm pt-2">{errors.title}</p>
-                ) : null}
-              </section>
+            <Col sm={12} md={12} lg={6} className="mb-3">
+              <CustomInputField
+                label={`Objective ${index + 1}`}
+                name={"title"}
+                value={values.title}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                error={errors.title}
+                touched={touched.title}
+              />
             </Col>
             <Col sm={12} md={12} lg={6}>
               <Row>
-                <Col sm={12} md={12} lg={6}>
-                  <section className="mb-3">
-                    <div className="form__label_primary">Start Date</div>
-                    <div className="position-relative">
-                      <input
-                        id="startDate"
-                        type="date"
-                        name="startDate"
-                        className="form__input_date"
-                        onBlur={handleBlur}
-                        value={values.startDate}
-                        onChange={handleChange}
-                      />
-                      <MdDateRange className="App__icon_date" />
-                    </div>
-                    {errors.startDate && touched.startDate ? (
-                      <p className="text-danger font_sm pt-2">{errors.title}</p>
-                    ) : null}
-                  </section>
+                <Col sm={12} md={12} lg={6} className="mb-3">
+                  <CustomDateField
+                    label="Start Date"
+                    name={"startDate"}
+                    value={values.startDate}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    error={errors.startDate}
+                    touched={touched.startDate}
+                  />
                 </Col>
                 <Col sm={12} md={12} lg={6}>
-                  <section>
-                    <div className="form__label_primary">End Date</div>
-                    <div className="position-relative">
-                      <input
-                        id="endDate"
-                        type="date"
-                        name="endDate"
-                        className="form__input_date"
-                        onBlur={handleBlur}
-                        value={values.endDate}
-                        onChange={handleChange}
-                      />
-                      <MdDateRange className="App__icon_date" />
-                    </div>
-                    {errors.endDate && touched.endDate ? (
-                      <p className="text-danger font_sm pt-2">{errors.title}</p>
-                    ) : null}
-                  </section>
+                  <CustomDateField
+                    label="End Date"
+                    name={"endDate"}
+                    value={values.endDate}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    error={errors.endDate}
+                    touched={touched.endDate}
+                  />
                 </Col>
               </Row>
             </Col>
           </Row>
           {/* Form row two */}
           <Row className="mb-3">
-            <Col sm={12} md={12} lg={6}>
-              <section className="mb-3">
-                <div className="form__lable_secondary">
-                  <div>Key Measures</div>
-                  <div className="font_sm pt-1">
-                    Add additional key measures&nbsp;&nbsp;
-                    <MdAddCircle
-                      className="App__icon"
-                      onClick={handleMeasuresInc}
-                    />
-                  </div>
-                </div>
-
-                {objectiveMeasures.map((measure, index) => {
-                  return (
-                    <span key={index}>
-                      <Measure
-                        index={index}
-                        item={measure}
-                        handleUpdateMeasures={handleUpdateMeasures}
-                        handleMeasuresDec={handleMeasuresDec}
-                      />
-                    </span>
-                  );
-                })}
-
-                {measuresError ? (
-                  <p className="text-danger font_sm">{measuresError}</p>
-                ) : null}
-              </section>
+            <Col sm={12} md={12} lg={6} className="mb-3">
+              <MeasuresList
+                measures={objectiveMeasures}
+                updateMeasureValue={updateMeasureValue}
+                handleMeasuresDec={handleMeasuresDec}
+                handleMeasuresInc={handleMeasuresInc}
+                measuresError={measuresError}
+              />
             </Col>
           </Row>
           {/* Form buttons */}
@@ -194,7 +138,7 @@ const NewObjective = (props) => {
             <Button
               variant="outline-danger"
               className="App__btn"
-              onClick={handleDelete}
+              onClick={() => decreaseCount(item)}
             >
               Delete
             </Button>

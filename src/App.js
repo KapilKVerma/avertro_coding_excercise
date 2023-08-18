@@ -3,7 +3,6 @@ import React from "react";
 import Header from "./components/header/Header";
 import SecurityStrategy from "./components/SecurityStrategy/SecurityStrategy";
 import Container from "react-bootstrap/Container";
-
 // === Styles ===
 import "./App.css";
 

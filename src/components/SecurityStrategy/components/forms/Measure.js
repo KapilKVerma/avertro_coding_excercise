@@ -1,36 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
+// === Components ===
+import { useFormik } from "formik";
+import { measureSchema } from "../../../../schemas/MesureSchema";
+import CustomInputField from "../../../../UICompnents/CustomInputField";
 // === Components - icons ===
 import { BiSolidMinusCircle } from "react-icons/bi";
 
 const Measure = (props) => {
-  const { index, item, handleUpdateMeasures, handleMeasuresDec } = props;
+  const { index, item, updateMeasureValue, handleMeasuresDec } = props;
 
-  // Component states
-  const [keyMeasure, setKeyMeasure] = useState("");
+  // Formik validation hook
+  const { values, errors, touched, handleChange, handleBlur } = useFormik({
+    initialValues: { title: "" },
+    validationSchema: measureSchema,
+  });
 
   // Handle input change
-  const handleChange = (e) => {
-    setKeyMeasure(e.target.value);
-    handleUpdateMeasures(item, e.target.value);
+  const submitMeasure = (e) => {
+    updateMeasureValue(item, e.target.value);
   };
 
   return (
-    <div className="d-flex flex-row justify-content-start position-relative mb-2">
-      <input
-        type="text"
-        name="measure"
-        value={keyMeasure}
-        className="form__input"
-        onChange={handleChange}
-      />
-      {index > 0 ? (
-        <BiSolidMinusCircle
-          className="App__icon App__icon_remove"
-          onClick={() => handleMeasuresDec(item)}
+    <>
+      <div className="d-flex flex-row position-relative mb-2">
+        {/* Remove button */}
+        {index > 0 ? (
+          <BiSolidMinusCircle
+            className="App__icon App__icon_remove"
+            onClick={() => handleMeasuresDec(item)}
+          />
+        ) : null}
+
+        <CustomInputField
+          label={``}
+          name={"title"}
+          value={values.title}
+          handleBlur={handleBlur}
+          handleChange={(e) => {
+            handleChange(e);
+            submitMeasure(e);
+          }}
+          error={errors.title}
+          touched={touched.title}
         />
-      ) : null}
-    </div>
+      </div>
+    </>
   );
 };
 
-export default Measure;
+export default React.memo(Measure);
