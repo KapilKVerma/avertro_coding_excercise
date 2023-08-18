@@ -1,24 +1,12 @@
 import React from "react";
 // === Components ===
-import { useFormik } from "formik";
-import { measureSchema } from "../../../../../../schemas/MeasureSchema";
 import CustomInputField from "../../../../../../UICompnents/CustomInputField";
 // === Components - icons ===
 import { BiSolidMinusCircle } from "react-icons/bi";
 
 const Measure = (props) => {
-  const { index, item, updateMeasureValue, handleMeasuresDec } = props;
-
-  // Formik validation hook
-  const { values, errors, touched, handleChange, handleBlur } = useFormik({
-    initialValues: { title: "" },
-    validationSchema: measureSchema,
-  });
-
-  // Handle input change
-  const submitMeasure = (e) => {
-    updateMeasureValue(item, e.target.value);
-  };
+  const { index, name, item, value, handleMeasuresDec } = props;
+  const { handleChange, errors, touched, handleBlur } = props;
 
   return (
     <>
@@ -27,21 +15,18 @@ const Measure = (props) => {
         {index > 0 ? (
           <BiSolidMinusCircle
             className="App__icon App__icon_remove"
-            onClick={() => handleMeasuresDec(item)}
+            onClick={(e) => handleMeasuresDec(e, item)}
           />
         ) : null}
 
         <CustomInputField
           label={``}
-          name={"title"}
-          value={values.title}
+          name={name}
+          value={value}
           handleBlur={handleBlur}
-          handleChange={(e) => {
-            handleChange(e);
-            submitMeasure(e);
-          }}
-          error={errors.title}
-          touched={touched.title}
+          handleChange={handleChange}
+          error={errors && errors[index]?.title}
+          touched={touched && touched[index]?.title}
         />
       </div>
     </>

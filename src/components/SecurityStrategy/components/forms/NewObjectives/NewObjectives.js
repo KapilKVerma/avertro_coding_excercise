@@ -16,6 +16,7 @@ const NewObjectives = (props) => {
     title: "",
     startDate: "",
     endDate: "",
+    measures: [{ uuid: uuidv4(), title: "" }],
   };
 
   // Component states

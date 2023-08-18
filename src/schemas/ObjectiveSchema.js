@@ -1,11 +1,12 @@
 import * as yup from "yup";
+import { measureSchema } from "./MeasureSchema";
 
 export const objectiveSchema = yup.object().shape({
   title: yup
     .string()
     .trim()
     .matches(/^[^<>]*$/, "Invalid characters entered")
-    .required("Title is required"),
+    .required("Objective title is required"),
   startDate: yup.date().required("Start date is required"),
   endDate: yup
     .date()
@@ -18,4 +19,8 @@ export const objectiveSchema = yup.object().shape({
         return startDate && value && value > startDate;
       }
     ),
+  measures: yup
+    .array()
+    .of(measureSchema)
+    .min(1, "Enter at least one key measure."),
 });

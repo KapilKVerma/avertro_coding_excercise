@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // === Components ===
+import Measure from "../../NewObjectives/components/Measure";
 import { createObjectives } from "../../../../../../utilities/localStorageConnection";
-import MeasuresList from "./MeasuresList";
 import { useFormik } from "formik";
 import { objectiveSchema } from "../../../../../../schemas/ObjectiveSchema";
 import { v4 as uuidv4 } from "uuid";
@@ -12,31 +12,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+// === Components - icons ===
+import { MdAddCircle } from "react-icons/md";
 
 const NewObjective = (props) => {
   const { item, index, decreaseCount, setResMessage } = props;
 
   // Component states
-  const [objectiveMeasures, setObjectiveMeasures] = useState([
-    { uuid: uuidv4(), title: "" },
-  ]);
   const [objectiveSubmited, setObjectiveSumbited] = useState(false);
-  const [measuresError, setMeasuresError] = useState("");
 
   // Handle objective submit
   const submitObjective = (values, actions) => {
-    let errors = [];
-
-    objectiveMeasures.forEach((measure) => {
-      if (!measure.title) errors.push(false);
-    });
-
-    if (errors.includes(false)) {
-      setMeasuresError("Enter key measures");
-      return;
-    }
-
-    const newObjectiveData = { ...values, measures: objectiveMeasures };
+    const newObjectiveData = { ...values };
     const response = createObjectives(newObjectiveData);
     setResMessage(response);
     actions.resetForm();
@@ -51,30 +38,24 @@ const NewObjective = (props) => {
       onSubmit: submitObjective,
     });
 
-  // Handle objective measures update
-  const updateMeasureValue = (item, value) => {
-    let measures = [...objectiveMeasures];
-    measures.forEach((measure) => {
-      if (measure.id === item.id) measure.title = value;
-    });
-    setObjectiveMeasures(measures);
-    setMeasuresError("");
-  };
-
   // Hanlde objective measures increase
-  const handleMeasuresInc = () => {
-    let measuresList = [...objectiveMeasures];
+  const handleMeasuresInc = (e) => {
+    let measuresList = [...values.measures];
     if (measuresList.length < 3) {
       measuresList.push({ uuid: uuidv4(), title: "" });
-      setObjectiveMeasures(measuresList);
+      e.target.name = "measures";
+      e.target.value = measuresList;
+      handleChange(e);
     }
   };
 
   // Hanlde objective measures decrease
-  const handleMeasuresDec = (item) => {
-    let measuresList = [...objectiveMeasures];
+  const handleMeasuresDec = (e, item) => {
+    let measuresList = [...values.measures];
     measuresList = measuresList.filter((measure) => measure.uuid !== item.uuid);
-    setObjectiveMeasures([...measuresList]);
+    e.target.name = "measures";
+    e.target.value = measuresList;
+    handleChange(e);
   };
 
   return (
@@ -124,13 +105,38 @@ const NewObjective = (props) => {
           {/* Form row two */}
           <Row className="mb-3">
             <Col sm={12} md={12} lg={6} className="mb-3">
-              <MeasuresList
-                measures={objectiveMeasures}
-                updateMeasureValue={updateMeasureValue}
-                handleMeasuresDec={handleMeasuresDec}
-                handleMeasuresInc={handleMeasuresInc}
-                measuresError={measuresError}
-              />
+              {/* Key measures label */}
+              <section className="form__lable_secondary">
+                <div>Key Measures</div>
+                <div className="font_sm pt-1">
+                  Add additional key measures&nbsp;&nbsp;
+                  <MdAddCircle
+                    className="App__icon"
+                    onClick={handleMeasuresInc}
+                  />
+                </div>
+              </section>
+
+              {/* Key Measures List */}
+              <section>
+                {values.measures.map((measure, index) => {
+                  return (
+                    <span key={measure.uuid}>
+                      <Measure
+                        index={index}
+                        item={measure}
+                        value={measure.title}
+                        handleMeasuresDec={handleMeasuresDec}
+                        handleChange={handleChange}
+                        name={`measures[${index}].title`}
+                        errors={errors?.measures}
+                        touched={touched?.measures}
+                        handleBlur={handleBlur}
+                      />
+                    </span>
+                  );
+                })}
+              </section>
             </Col>
           </Row>
           {/* Form buttons */}
@@ -158,4 +164,4 @@ const NewObjective = (props) => {
   );
 };
 
-export default NewObjective;
+export default React.memo(NewObjective);
