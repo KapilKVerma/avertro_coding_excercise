@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 // === Components ===
-import { createObjectives } from "../../../../utilities/localStorageConnetion";
+import { createObjectives } from "../../../../../../utilities/localStorageConnection";
 import MeasuresList from "./MeasuresList";
 import { useFormik } from "formik";
-import { objectiveSchema } from "../../../../schemas/ObjectiveSchema";
+import { objectiveSchema } from "../../../../../../schemas/ObjectiveSchema";
 import { v4 as uuidv4 } from "uuid";
-import CustomInputField from "../../../../UICompnents/CustomInputField";
-import CustomDateField from "../../../../UICompnents/CustomDateField";
+import CustomInputField from "../../../../../../UICompnents/CustomInputField";
+import CustomDateField from "../../../../../../UICompnents/CustomDateField";
 // === Components - bootstrap ===
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

@@ -1,8 +1,8 @@
 import React from "react";
 // === Components ===
 import { useFormik } from "formik";
-import { measureSchema } from "../../../../schemas/MesureSchema";
-import CustomInputField from "../../../../UICompnents/CustomInputField";
+import { measureSchema } from "../../../../../../schemas/MeasureSchema";
+import CustomInputField from "../../../../../../UICompnents/CustomInputField";
 // === Components - icons ===
 import { BiSolidMinusCircle } from "react-icons/bi";
 
@@ -22,7 +22,7 @@ const Measure = (props) => {
 
   return (
     <>
-      <div className="d-flex flex-row position-relative mb-2">
+      <div className="position-relative mb-2">
         {/* Remove button */}
         {index > 0 ? (
           <BiSolidMinusCircle

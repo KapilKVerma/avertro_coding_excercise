@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // === Components ===
-import NewObjective from "./NewObjective";
-import AppAlerts from "../../../../UICompnents/AppAlerts";
+import NewObjective from "./components/NewObjective";
+import AppAlerts from "../../../../../UICompnents/AppAlerts";
 import { v4 as uuidv4 } from "uuid";
 // === Components - bootstrap ===
 import Button from "react-bootstrap/Button";

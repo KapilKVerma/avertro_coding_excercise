@@ -1,7 +1,7 @@
 import React from "react";
 // === Components ===
 import Header from "./components/header/Header";
-import SecurityStrategy from "./components/SecurityStrategy/SecurityStrategy";
+import SecurityStrategy from "./components/securityStrategy/SecurityStrategy";
 import Container from "react-bootstrap/Container";
 // === Styles ===
 import "./App.css";

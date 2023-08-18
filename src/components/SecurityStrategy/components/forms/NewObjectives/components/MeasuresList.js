@@ -1,6 +1,6 @@
 import React from "react";
 // === Component ===
-import Measure from "./Measure";
+import Measure from "../../NewObjectives/components/Measure";
 // === Components - icons ===
 import { MdAddCircle } from "react-icons/md";
 

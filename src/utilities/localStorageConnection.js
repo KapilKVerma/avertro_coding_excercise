@@ -14,15 +14,10 @@ export const createObjectives = (data) => {
   return "Stored objective successfully.";
 };
 
-export const updateObjectives = (data) => {
-  localStorage.setItem(dataKey, JSON.stringify(data));
-  return "Updated objective.";
-};
-
 export const deleteObjectives = (data) => {
   let response = localStorage.getItem(dataKey);
   response = JSON.parse(response);
-  response = response.filter((item) => item.id !== data.id);
+  response = response.filter((item) => item.uuid !== data.uuid);
   localStorage.setItem(dataKey, JSON.stringify(response));
   return { message: "Objective deleted.", data: response };
 };

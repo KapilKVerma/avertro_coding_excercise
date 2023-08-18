@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 // === Components ===
 import ObjectivesList from "./ObjectivesList";
-import NewObjectives from "../forms/NewObjectives";
-import { getDataFromLocalStorage } from "../../../../utilities/localStorageConnetion";
+import NewObjectives from "../forms/NewObjectives/NewObjectives";
+import { getDataFromLocalStorage } from "../../../../utilities/localStorageConnection";
 
 const BusinessObjectives = () => {
   // Component states
