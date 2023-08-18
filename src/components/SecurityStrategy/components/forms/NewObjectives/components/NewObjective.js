@@ -77,7 +77,7 @@ const NewObjective = (props) => {
             </Col>
             <Col sm={12} md={12} lg={6}>
               <Row>
-                <Col sm={12} md={12} lg={6} className="mb-3">
+                <Col sm={12} md={6} lg={6} className="mb-3">
                   <CustomDateField
                     label="Start Date"
                     name={"startDate"}
@@ -88,7 +88,7 @@ const NewObjective = (props) => {
                     touched={touched.startDate}
                   />
                 </Col>
-                <Col sm={12} md={12} lg={6}>
+                <Col sm={12} md={6} lg={6}>
                   <CustomDateField
                     label="End Date"
                     name={"endDate"}

@@ -162,9 +162,10 @@
 
 .form__input_date {
   border: 1px solid var(--gray);
-  width: 100%;
-  padding: 10px 40px;
+  padding: 10px 50px;
   border-radius: 5px;
+  display: block;
+  width: 100%;
 }
 
 .form__input_date:focus {

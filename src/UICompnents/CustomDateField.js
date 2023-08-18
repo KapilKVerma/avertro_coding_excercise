@@ -27,6 +27,7 @@ const CustomDateField = (props) => {
             handleChange(e);
           }}
         />
+
         <MdDateRange className="App__icon_date" />
       </div>
       {error && touched ? (
