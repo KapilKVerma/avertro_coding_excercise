@@ -20,7 +20,7 @@ const CustomDateField = (props) => {
           className="form__input_date"
           onBlur={handleBlur}
           selected={value}
-          dateFormat="dd-MM-yyyy"
+          dateFormat="dd/MM/yyyy"
           onChange={(date, e) => {
             e.target.name = name;
             e.target.value = date;
