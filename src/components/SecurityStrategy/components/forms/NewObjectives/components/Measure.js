@@ -10,15 +10,7 @@ const Measure = (props) => {
 
   return (
     <>
-      <div className="position-relative mb-2">
-        {/* Remove button */}
-        {index > 0 ? (
-          <BiSolidMinusCircle
-            className="App__icon App__icon_remove"
-            onClick={(e) => handleMeasuresDec(e, item)}
-          />
-        ) : null}
-
+      <div className="position-relative d-flex flex-row justify-content-start mb-2">
         <CustomInputField
           label={``}
           name={name}
@@ -28,6 +20,13 @@ const Measure = (props) => {
           error={errors && errors[index]?.title}
           touched={touched && touched[index]?.title}
         />
+        {/* Remove button */}
+        {index > 0 ? (
+          <BiSolidMinusCircle
+            className="App__icon App__icon_remove"
+            onClick={(e) => handleMeasuresDec(e, item)}
+          />
+        ) : null}
       </div>
     </>
   );

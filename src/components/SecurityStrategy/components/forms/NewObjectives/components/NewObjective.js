@@ -106,7 +106,7 @@ const NewObjective = (props) => {
           <Row className="mb-3">
             <Col sm={12} md={12} lg={6} className="mb-3">
               {/* Key measures label */}
-              <section className="form__lable_secondary">
+              <div className="form__lable_secondary">
                 <div>Key Measures</div>
                 <div className="font_sm pt-1">
                   Add additional key measures&nbsp;&nbsp;
@@ -115,7 +115,7 @@ const NewObjective = (props) => {
                     onClick={handleMeasuresInc}
                   />
                 </div>
-              </section>
+              </div>
 
               {/* Key Measures List */}
               <section>
