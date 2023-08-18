@@ -2,7 +2,7 @@
 
 Coding Exercise Description
 
-The challenge of this exercise is to create a web application to create 'Strategic Business Objectives' using reactjs framework and necessary libraries.
+The challenge of this exercise is to create a web application to create 'Strategic Business Objectives' using reactjs framework and necessary libraries/packages.
 
 Requirements:
 
