@@ -26,11 +26,11 @@ Solution:
 
 - Development process:
 
-        - Created new react app using npx create-react-app
-        - Created header using avertro logo
-        - Created body containing 'Set security strategy'
-        - Created custom 'Mission & Vision' and 'Strategic Business Objectives' tabs
-        - Created custom body for each tab
+        - Created new react app using npx create-react-app.
+        - Created header using avertro logo.
+        - Created body containing 'Set security strategy'.
+        - Created custom 'Mission & Vision' and 'Strategic Business Objectives' tabs.
+        - Created custom body for each tab.
         - Structured the 'Stratgic Business Objectives' body  with 'Stratgic Business Objectives'
           and 'New Objective Form' components.
         - 'Stratgic Business Objectives' body shows the list of all the objective, and each
@@ -41,4 +41,5 @@ Solution:
         - 'New Objectives Form' fuctionalities:
                 - Allows user to add up to 3 objectives at once dynamically.
                 - Each objective can have upto 3 key measures dynamically.
-        - Created custom alert system to show pop over using modals for feedback messages
+        - Created custom alert system to show pop over using modals for feedback messages.
+        - Optimized the app for mobile.

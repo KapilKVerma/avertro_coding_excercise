@@ -56,23 +56,20 @@ const ObjectiveDetails = (props) => {
       {/* Objective Details */}
       <section className="font_lg font-weight-bold text-capitalize position-relative">
         {/* Objective title */}
-        <span>{objective.title}</span>
+        <div className="w-75">{objective.title}</div>
 
         {/* Objective dates */}
-        <div>
-          <p className="text-dark">
-            <span className="font_md mr-5">
-              Start Date:&nbsp;
-              {objective.startDate &&
-                dayjs(objective.startDate).format("DD/MM/YYYY")}
-            </span>
-            <span className="font_md">
-              End Date:&nbsp;
-              {objective.endDate &&
-                dayjs(objective.endDate).format("DD/MM/YYYY")}
-            </span>
-          </p>
-        </div>
+        <p>
+          <span className="font_md mr-5" style={{ display: "inline-block" }}>
+            Start Date:&nbsp;
+            {objective.startDate &&
+              dayjs(objective.startDate).format("DD/MM/YYYY")}
+          </span>
+          <span className="font_md" style={{ display: "inline-block" }}>
+            End Date:&nbsp;
+            {objective.endDate && dayjs(objective.endDate).format("DD/MM/YYYY")}
+          </span>
+        </p>
 
         {/* Objective measures */}
         <div className="text-dark">

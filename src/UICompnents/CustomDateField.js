@@ -15,6 +15,7 @@ const CustomDateField = (props) => {
       <div className="form__label_primary">{label}</div>
       <div className="position-relative">
         <DatePicker
+          id={name}
           value={value}
           className="form__input_date"
           onBlur={handleBlur}

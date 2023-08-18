@@ -29,7 +29,7 @@ const ObjectivesList = (props) => {
         <Button
           className="App__btn btn_primary"
           onClick={() => setShowForm(true)}
-          style={{ position: "absolute", bottom: "0", right: "0" }}
+          style={{ position: "absolute", top: "0", right: "0" }}
         >
           Add
         </Button>
