@@ -6,12 +6,12 @@ import Alert from "react-bootstrap/Alert";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
 const AppAlerts = (props) => {
-  const { message, showAlert, setResMessgae } = props;
+  const { message, showAlert, setResMessage } = props;
   const [show, setShow] = useState(showAlert);
 
   const handleClose = () => {
     setShow(false);
-    setResMessgae("");
+    setResMessage("");
   };
 
   // Close modal in 2sec

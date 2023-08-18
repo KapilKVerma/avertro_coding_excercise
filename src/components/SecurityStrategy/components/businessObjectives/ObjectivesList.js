@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 // === Components ===
 import ObjectiveDetails from "./ObjectiveDetails";
+import AppAlerts from "../../../../UICompnents/AppAlerts";
 // === Components - bootstrap ===
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 
 const ObjectivesList = (props) => {
-  const { objectives, setShowForm } = props;
+  const { data, setData, setShowForm } = props;
+
+  // Component states
+  const [resMessage, setResMessage] = useState("");
 
   return (
     <>
+      {/* Alert message pop up */}
+      {resMessage && (
+        <AppAlerts
+          message={resMessage}
+          showAlert={true}
+          setResMessage={setResMessage}
+        />
+      )}
+
       {/* Objective Header */}
       <header className="position-relative">
         <div className="font_lg w-75">Strategic Business Objectives</div>
@@ -18,9 +31,7 @@ const ObjectivesList = (props) => {
           onClick={() => setShowForm(true)}
           style={{ position: "absolute", bottom: "0", right: "0" }}
         >
-          {objectives.length === 0 ? <span>Add</span> : null}
-          {objectives.length < 3 && objectives.length > 0 ? <span>Add / Update</span> : null}
-          {objectives.length === 3 ? <span>Update</span> : null}
+          Add
         </Button>
       </header>
 
@@ -28,9 +39,10 @@ const ObjectivesList = (props) => {
 
       {/* Objective Alert Message */}
       <section>
-        {objectives.length === 0 ? (
+        {data.length === 0 ? (
           <Alert variant="primary" className="font_md">
-            There are no business objectives to display. Please, register new objectives by clicking&nbsp;
+            There are no business objectives to display. Please, register new
+            objectives by clicking&nbsp;
             <u onClick={() => setShowForm(true)} style={{ cursor: "pointer" }}>
               here
             </u>
@@ -41,14 +53,17 @@ const ObjectivesList = (props) => {
 
       {/* Objectives List */}
       <section>
-        {objectives &&
-          objectives.map((objective, index) => {
-            return (
-              <span key={index}>
-                <ObjectiveDetails objective={objective} />
-              </span>
-            );
-          })}
+        {data.map((objective, index) => {
+          return (
+            <span key={index}>
+              <ObjectiveDetails
+                objective={objective}
+                setData={setData}
+                setResMessage={setResMessage}
+              />
+            </span>
+          );
+        })}
       </section>
     </>
   );

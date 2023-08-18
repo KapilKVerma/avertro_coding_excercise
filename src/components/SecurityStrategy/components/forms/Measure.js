@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { BiSolidMinusCircle } from "react-icons/bi";
 
 const Measure = (props) => {
-  const { index, item, handleUpdateMeasures, handleMeasuresCount } = props;
+  const { index, item, handleUpdateMeasures, handleMeasuresDec } = props;
 
   // Component states
-  const [keyMeasure, setKeyMeasure] = useState(item ? item.title : "");
+  const [keyMeasure, setKeyMeasure] = useState("");
 
   // Handle input change
   const handleChange = (e) => {
@@ -16,13 +16,17 @@ const Measure = (props) => {
 
   return (
     <div className="d-flex flex-row justify-content-start position-relative mb-2">
-      <input type="text" name="measure" value={keyMeasure} className="form__input" onChange={handleChange} />
+      <input
+        type="text"
+        name="measure"
+        value={keyMeasure}
+        className="form__input"
+        onChange={handleChange}
+      />
       {index > 0 ? (
         <BiSolidMinusCircle
           className="App__icon App__icon_remove"
-          onClick={() => {
-            handleMeasuresCount("decrease", index);
-          }}
+          onClick={() => handleMeasuresDec(item)}
         />
       ) : null}
     </div>

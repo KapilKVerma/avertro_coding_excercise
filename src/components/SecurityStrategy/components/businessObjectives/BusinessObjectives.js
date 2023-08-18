@@ -5,11 +5,10 @@ import NewObjectives from "../forms/NewObjectives";
 import { getDataFromLocalStorage } from "../../../../utilities/localStorageConnetion";
 
 const BusinessObjectives = () => {
+  // Component states
   const [data, setData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [dataLoading, setDataLoading] = useState(false);
-
-  console.log("main");
 
   useEffect(() => {
     // Fetching objective from localstorage
@@ -25,16 +24,26 @@ const BusinessObjectives = () => {
   return (
     <div className="tab__body">
       {/* Loading data */}
-      <section>{dataLoading ? <div className="p-5 text-center">Loading...</div> : null}</section>
+      <section>
+        {dataLoading ? <div className="p-5 text-center">Loading...</div> : null}
+      </section>
 
       {/* Objectives List  */}
       <section>
-        {!showForm && !dataLoading ? <ObjectivesList objectives={data} setShowForm={setShowForm} /> : null}
+        {!showForm && !dataLoading ? (
+          <ObjectivesList
+            data={data}
+            setData={setData}
+            setShowForm={setShowForm}
+          />
+        ) : null}
       </section>
 
       {/* New Objectives Form */}
       <section>
-        {showForm && !dataLoading ? <NewObjectives setShowForm={setShowForm} data={data} setData={setData} /> : null}{" "}
+        {showForm && !dataLoading ? (
+          <NewObjectives setShowForm={setShowForm} data={data} />
+        ) : null}
       </section>
     </div>
   );
