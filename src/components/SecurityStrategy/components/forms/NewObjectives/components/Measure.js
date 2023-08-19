@@ -23,7 +23,7 @@ const Measure = (props) => {
         {/* Remove button */}
         {index > 0 ? (
           <BiSolidMinusCircle
-            className="App__icon App__icon_remove"
+            className="App__icon App__icon_remove mt-2"
             onClick={(e) => handleMeasuresDec(e, item)}
           />
         ) : null}
