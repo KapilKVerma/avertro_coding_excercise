@@ -118,25 +118,23 @@ const NewObjective = (props) => {
               </div>
 
               {/* Key Measures List */}
-              <section>
-                {values.measures.map((measure, index) => {
-                  return (
-                    <span key={measure.uuid}>
-                      <Measure
-                        index={index}
-                        item={measure}
-                        value={measure.title}
-                        handleMeasuresDec={handleMeasuresDec}
-                        handleChange={handleChange}
-                        name={`measures[${index}].title`}
-                        errors={errors?.measures}
-                        touched={touched?.measures}
-                        handleBlur={handleBlur}
-                      />
-                    </span>
-                  );
-                })}
-              </section>
+              {values.measures.map((measure, index) => {
+                return (
+                  <span key={measure.uuid}>
+                    <Measure
+                      index={index}
+                      item={measure}
+                      value={measure.title}
+                      handleMeasuresDec={handleMeasuresDec}
+                      handleChange={handleChange}
+                      name={`measures[${index}].title`}
+                      errors={errors?.measures}
+                      touched={touched?.measures}
+                      handleBlur={handleBlur}
+                    />
+                  </span>
+                );
+              })}
             </Col>
           </Row>
           {/* Form buttons */}
